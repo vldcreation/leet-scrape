@@ -7,11 +7,11 @@ import (
 
 	template_engine "text/template"
 
-	"github.com/ISKalsi/leet-scrape/v2/consts"
-	"github.com/ISKalsi/leet-scrape/v2/domain/entity"
-	"github.com/ISKalsi/leet-scrape/v2/domain/service"
-	"github.com/ISKalsi/leet-scrape/v2/internal/errors"
-	"github.com/ISKalsi/leet-scrape/v2/internal/util"
+	"github.com/vldcreation/leet-scrape/v2/consts"
+	"github.com/vldcreation/leet-scrape/v2/domain/entity"
+	"github.com/vldcreation/leet-scrape/v2/domain/service"
+	"github.com/vldcreation/leet-scrape/v2/internal/errors"
+	"github.com/vldcreation/leet-scrape/v2/internal/util"
 )
 
 var (

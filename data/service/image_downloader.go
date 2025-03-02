@@ -1,12 +1,13 @@
 package service
 
 import (
-	"github.com/ISKalsi/leet-scrape/v2/internal/errors"
 	"io"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
+
+	"github.com/vldcreation/leet-scrape/v2/internal/errors"
 )
 
 type ImageDownloader struct{}

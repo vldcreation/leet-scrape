@@ -1,8 +1,8 @@
 package datasource
 
 import (
-	"github.com/ISKalsi/leet-scrape/v2/internal/errors"
 	"github.com/gocolly/colly/v2"
+	"github.com/vldcreation/leet-scrape/v2/internal/errors"
 )
 
 type WebScrapper interface {

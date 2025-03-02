@@ -1,9 +1,9 @@
 package usecase
 
 import (
-	"github.com/ISKalsi/leet-scrape/v2/domain/entity"
-	"github.com/ISKalsi/leet-scrape/v2/domain/repo"
-	"github.com/ISKalsi/leet-scrape/v2/internal/errors"
+	"github.com/vldcreation/leet-scrape/v2/domain/entity"
+	"github.com/vldcreation/leet-scrape/v2/domain/repo"
+	"github.com/vldcreation/leet-scrape/v2/internal/errors"
 )
 
 type searchingMethod int

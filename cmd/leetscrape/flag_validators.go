@@ -4,7 +4,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/ISKalsi/leet-scrape/v2/consts"
+	"github.com/vldcreation/leet-scrape/v2/consts"
 )
 
 func validateTemplate(tmpl string) error {

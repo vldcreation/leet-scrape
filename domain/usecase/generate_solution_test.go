@@ -3,11 +3,11 @@ package usecase
 import (
 	"testing"
 
-	"github.com/ISKalsi/leet-scrape/v2/domain/entity"
-	"github.com/ISKalsi/leet-scrape/v2/internal/errors"
-	"github.com/ISKalsi/leet-scrape/v2/internal/mock/service"
-	"github.com/ISKalsi/leet-scrape/v2/internal/testdata"
 	"github.com/stretchr/testify/assert"
+	"github.com/vldcreation/leet-scrape/v2/domain/entity"
+	"github.com/vldcreation/leet-scrape/v2/internal/errors"
+	"github.com/vldcreation/leet-scrape/v2/internal/mock/service"
+	"github.com/vldcreation/leet-scrape/v2/internal/testdata"
 )
 
 func TestGenerateSolutionFileUseCase(group *testing.T) {

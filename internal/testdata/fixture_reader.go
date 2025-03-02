@@ -2,11 +2,12 @@ package testdata
 
 import (
 	"encoding/json"
-	"github.com/ISKalsi/leet-scrape/v2/data/model"
-	"github.com/ISKalsi/leet-scrape/v2/domain/entity"
 	"os"
 	"path/filepath"
 	"runtime"
+
+	"github.com/vldcreation/leet-scrape/v2/data/model"
+	"github.com/vldcreation/leet-scrape/v2/domain/entity"
 )
 
 func ImportFromFile(fixtureName string) (entity.Question, error) {

@@ -2,15 +2,16 @@ package repo
 
 import (
 	"errors"
-	"github.com/ISKalsi/leet-scrape/v2/data/model"
-	"github.com/ISKalsi/leet-scrape/v2/domain/entity"
-	internalErr "github.com/ISKalsi/leet-scrape/v2/internal/errors"
-	"github.com/ISKalsi/leet-scrape/v2/internal/mock/datasource"
-	"github.com/ISKalsi/leet-scrape/v2/internal/testdata"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/mock"
 	"strconv"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/mock"
+	"github.com/vldcreation/leet-scrape/v2/data/model"
+	"github.com/vldcreation/leet-scrape/v2/domain/entity"
+	internalErr "github.com/vldcreation/leet-scrape/v2/internal/errors"
+	"github.com/vldcreation/leet-scrape/v2/internal/mock/datasource"
+	"github.com/vldcreation/leet-scrape/v2/internal/testdata"
 )
 
 func TestGetByName(group *testing.T) {

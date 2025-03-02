@@ -1,11 +1,12 @@
 package usecase
 
 import (
-	"github.com/ISKalsi/leet-scrape/v2/internal/errors"
-	"github.com/ISKalsi/leet-scrape/v2/internal/mock/repo"
-	"github.com/ISKalsi/leet-scrape/v2/internal/testdata"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/vldcreation/leet-scrape/v2/internal/errors"
+	"github.com/vldcreation/leet-scrape/v2/internal/mock/repo"
+	"github.com/vldcreation/leet-scrape/v2/internal/testdata"
 )
 
 func TestGetProblemUseCase(group *testing.T) {

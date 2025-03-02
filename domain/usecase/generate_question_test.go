@@ -1,13 +1,14 @@
 package usecase
 
 import (
-	"github.com/ISKalsi/leet-scrape/v2/domain/entity"
-	"github.com/ISKalsi/leet-scrape/v2/internal/mock/service"
-	"github.com/ISKalsi/leet-scrape/v2/internal/testdata"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/mock"
 	"path/filepath"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/mock"
+	"github.com/vldcreation/leet-scrape/v2/domain/entity"
+	"github.com/vldcreation/leet-scrape/v2/internal/mock/service"
+	"github.com/vldcreation/leet-scrape/v2/internal/testdata"
 )
 
 func TestGenerateQuestionFileUseCase(group *testing.T) {

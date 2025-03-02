@@ -1,4 +1,4 @@
-module github.com/ISKalsi/leet-scrape/v2
+module github.com/vldcreation/leet-scrape/v2
 
 go 1.18
 

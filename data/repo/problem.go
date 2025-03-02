@@ -1,14 +1,15 @@
 package repo
 
 import (
-	"github.com/ISKalsi/leet-scrape/v2/data/datasource"
-	"github.com/ISKalsi/leet-scrape/v2/domain/entity"
-	"github.com/ISKalsi/leet-scrape/v2/internal/errors"
-	"github.com/ISKalsi/leet-scrape/v2/internal/util"
 	"regexp"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/vldcreation/leet-scrape/v2/data/datasource"
+	"github.com/vldcreation/leet-scrape/v2/domain/entity"
+	"github.com/vldcreation/leet-scrape/v2/internal/errors"
+	"github.com/vldcreation/leet-scrape/v2/internal/util"
 )
 
 type Problem struct {

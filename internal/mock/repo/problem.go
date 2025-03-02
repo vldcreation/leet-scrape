@@ -1,8 +1,8 @@
 package repo
 
 import (
-	"github.com/ISKalsi/leet-scrape/v2/domain/entity"
 	"github.com/stretchr/testify/mock"
+	"github.com/vldcreation/leet-scrape/v2/domain/entity"
 )
 
 type Problem struct {

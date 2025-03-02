@@ -2,9 +2,10 @@ package datasource
 
 import (
 	"context"
-	"github.com/ISKalsi/leet-scrape/v2/api"
-	"github.com/ISKalsi/leet-scrape/v2/data/model"
+
 	"github.com/machinebox/graphql"
+	"github.com/vldcreation/leet-scrape/v2/api"
+	"github.com/vldcreation/leet-scrape/v2/data/model"
 )
 
 type GraphQLApi interface {

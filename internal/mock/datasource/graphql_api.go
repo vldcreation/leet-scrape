@@ -1,8 +1,8 @@
 package datasource
 
 import (
-	"github.com/ISKalsi/leet-scrape/v2/data/model"
 	"github.com/stretchr/testify/mock"
+	"github.com/vldcreation/leet-scrape/v2/data/model"
 )
 
 type GraphQLApi struct {

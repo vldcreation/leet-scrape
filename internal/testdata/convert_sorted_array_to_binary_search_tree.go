@@ -1,6 +1,6 @@
 package testdata
 
-import "github.com/ISKalsi/leet-scrape/v2/domain/entity"
+import "github.com/vldcreation/leet-scrape/v2/domain/entity"
 
 var QuestionWithImg = entity.Question{
 	TitleSlug: "convert-sorted-array-to-binary-search-tree",

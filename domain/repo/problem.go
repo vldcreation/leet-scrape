@@ -1,6 +1,6 @@
 package repo
 
-import "github.com/ISKalsi/leet-scrape/v2/domain/entity"
+import "github.com/vldcreation/leet-scrape/v2/domain/entity"
 
 type Problem interface {
 	GetByName(name string) (*entity.Question, error)

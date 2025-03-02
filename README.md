@@ -56,7 +56,7 @@ More details in the [Usage](#-usage) section.
   2. Run the following command in your shell
 
    ```bash
-   go install github.com/ISKalsi/leet-scrape/v2/cmd/leetscrape@latest
+   go install github.com/vldcreation/leet-scrape/v2/cmd/leetscrape@latest
    ```
 
 ## 🧰 Usage

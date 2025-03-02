@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/ISKalsi/leet-scrape/v2/data/service"
-	"github.com/ISKalsi/leet-scrape/v2/domain/usecase"
 	"github.com/urfave/cli/v2"
+	"github.com/vldcreation/leet-scrape/v2/data/service"
+	"github.com/vldcreation/leet-scrape/v2/domain/usecase"
 )
 
 var solution = &cli.Command{

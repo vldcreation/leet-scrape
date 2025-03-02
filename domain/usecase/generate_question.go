@@ -1,11 +1,12 @@
 package usecase
 
 import (
-	"github.com/ISKalsi/leet-scrape/v2/domain/entity"
-	"github.com/ISKalsi/leet-scrape/v2/domain/service"
-	"github.com/ISKalsi/leet-scrape/v2/internal/util"
 	"path/filepath"
 	"regexp"
+
+	"github.com/vldcreation/leet-scrape/v2/domain/entity"
+	"github.com/vldcreation/leet-scrape/v2/domain/service"
+	"github.com/vldcreation/leet-scrape/v2/internal/util"
 )
 
 type GenerateQuestionFile struct {

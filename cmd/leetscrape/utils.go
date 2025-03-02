@@ -1,15 +1,15 @@
 package main
 
 import (
-	"github.com/ISKalsi/leet-scrape/v2/api"
-	"github.com/ISKalsi/leet-scrape/v2/data/datasource"
-	"github.com/ISKalsi/leet-scrape/v2/data/repo"
-	"github.com/ISKalsi/leet-scrape/v2/domain/entity"
-	"github.com/ISKalsi/leet-scrape/v2/domain/usecase"
-	"github.com/ISKalsi/leet-scrape/v2/internal/errors"
 	"github.com/gocolly/colly/v2"
 	"github.com/machinebox/graphql"
 	"github.com/urfave/cli/v2"
+	"github.com/vldcreation/leet-scrape/v2/api"
+	"github.com/vldcreation/leet-scrape/v2/data/datasource"
+	"github.com/vldcreation/leet-scrape/v2/data/repo"
+	"github.com/vldcreation/leet-scrape/v2/domain/entity"
+	"github.com/vldcreation/leet-scrape/v2/domain/usecase"
+	"github.com/vldcreation/leet-scrape/v2/internal/errors"
 )
 
 func handleError(err errors.Error) cli.ExitCoder {

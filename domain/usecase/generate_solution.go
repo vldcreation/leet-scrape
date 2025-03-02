@@ -2,10 +2,12 @@ package usecase
 
 import (
 	"fmt"
+	"slices"
 	"strings"
 
 	template_engine "text/template"
 
+	"github.com/ISKalsi/leet-scrape/v2/consts"
 	"github.com/ISKalsi/leet-scrape/v2/domain/entity"
 	"github.com/ISKalsi/leet-scrape/v2/domain/service"
 	"github.com/ISKalsi/leet-scrape/v2/internal/errors"
@@ -52,14 +54,19 @@ func (uc *GenerateSolutionFile) Execute() error {
 			// check if choose template
 			solution.CodeSnippet = data
 			if uc.template != "" {
-				tmpl, err := template_engine.ParseFiles(fmt.Sprintf(PATH_FILES, uc.template))
+				templateFiles := uc.template
+				if slices.Contains(consts.TEMPLATES, uc.template) {
+					templateFiles = fmt.Sprintf(PATH_FILES, uc.template)
+				}
+
+				tmpl, err := template_engine.ParseFiles(templateFiles)
 				if err != nil {
-					return err
+					return errors.FileTemplateDoesntExist
 				}
 				var builder strings.Builder
 				err = tmpl.Execute(&builder, solution)
 				if err != nil {
-					return err
+					return errors.FileTemplateInvalid
 				}
 				solution.CodeSnippet = builder.String()
 			}

@@ -21,7 +21,7 @@ var solution = &cli.Command{
 			return exitCli(err)
 		}
 		fw := service.NewFileWriter()
-		generateFile := usecase.NewGenerateSolutionFile(ques, fw, fileName, args.path, args.boilerplate, args.lang)
+		generateFile := usecase.NewGenerateSolutionFile(ques, fw, fileName, args.path, args.boilerplate, args.lang, args.template)
 		err = generateFile.Execute()
 		if err != nil {
 			return exitCli(err)
@@ -35,9 +35,19 @@ var solution = &cli.Command{
 			Usage:   "Add boilerplate code to the Solution file at the top. Eg: " + CliName + " -n \"Two Sum\" sol -b \"#include<iostream>\\n using namespace std\\n\"",
 		},
 		&cli.StringFlag{
+			Name:    TEMPLATE,
+			Aliases: []string{"t"},
+			Usage:   "Set template code snippet. Eg: easy | medium | hard",
+		},
+		&cli.StringFlag{
+			Name:    LOCATION,
+			Aliases: []string{"o"},
+			Usage:   "Directory `<path>` for the output file",
+		},
+		&cli.StringFlag{
 			Name:     LANGUAGE,
 			Aliases:  []string{"l"},
-			Usage:    "Add boilerplate code to the Solution file at the top. Eg: " + CliName + " -n \"Two Sum\" sol -l C++\n\t\tGenerally available options: C++, C, C#, Kotlin, Java, Python, Python3, Swift, \n\t\tGo, PHP, Racket, Rust, Ruby, JavaScript, TypeScript, Scala, ErLang, Elixir",
+			Usage:    "Generally available options: C++, C, C#, Kotlin, Java, Python, Python3, Swift, \n\t\tGo, PHP, Racket, Rust, Ruby, JavaScript, TypeScript, Scala, ErLang, Elixir",
 			Required: true,
 		},
 	},

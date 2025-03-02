@@ -16,6 +16,11 @@ var solution = &cli.Command{
 		if err != nil {
 			return exitCli(err)
 		}
+
+		if err = validateTemplate(args.template); err != nil {
+			return exitCli(err)
+		}
+
 		fileName, err := getFileName(ques, args)
 		if err != nil {
 			return exitCli(err)

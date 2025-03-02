@@ -18,6 +18,8 @@ const (
 	FailedToWriteImage
 	FailedToCreateDirectory
 	FailedToDownloadImage
+	FileTemplateInvalid
+	FileTemplateDoesntExist
 )
 
 const repoUrl = "https://github.com/ISKalsi/leet-scrape"
@@ -68,6 +70,10 @@ func (e Error) GetMessage(cli string) string {
 		return "This was not supposed to happen. Please raise an issue on the Github repo - " + repoUrl
 	case NotImplemented:
 		return "This feature is yet to be implemented. Keep track on " + repoUrl
+	case FileTemplateDoesntExist:
+		return "File Template doesn't exist. Please raise an issue on the Github repo - " + repoUrl
+	case FileTemplateInvalid:
+		return "File template invalid. Please raise an issue on the Github repo - " + repoUrl
 	default:
 		return "!!! I was not prepared for this (>.<) Please raise an issue on the Github repo - " + repoUrl
 	}

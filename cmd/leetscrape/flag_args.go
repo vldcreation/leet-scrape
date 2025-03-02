@@ -10,6 +10,7 @@ type flagArgs struct {
 	boilerplate string
 	path        string
 	lang        string
+	template    string
 }
 
 func extractFlagArgs(c *cli.Context) *flagArgs {
@@ -20,6 +21,7 @@ func extractFlagArgs(c *cli.Context) *flagArgs {
 	boilerplate := c.String(BOILERPLATE)
 	path := c.String(LOCATION)
 	lang := c.String(LANGUAGE)
+	template := c.String(TEMPLATE)
 
 	return &flagArgs{
 		url:         url,
@@ -29,5 +31,6 @@ func extractFlagArgs(c *cli.Context) *flagArgs {
 		boilerplate: boilerplate,
 		path:        path,
 		lang:        lang,
+		template:    template,
 	}
 }

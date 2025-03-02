@@ -1,12 +1,13 @@
 package usecase
 
 import (
+	"testing"
+
 	"github.com/ISKalsi/leet-scrape/v2/domain/entity"
 	"github.com/ISKalsi/leet-scrape/v2/internal/errors"
 	"github.com/ISKalsi/leet-scrape/v2/internal/mock/service"
 	"github.com/ISKalsi/leet-scrape/v2/internal/testdata"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestGenerateSolutionFileUseCase(group *testing.T) {
@@ -15,10 +16,11 @@ func TestGenerateSolutionFileUseCase(group *testing.T) {
 	testFileName := "two-sum"
 	testBoilerplate := "// this is a test comment\n\n"
 	testLang := "C++"
+	testTemplate := "easy"
 
 	group.Run("should return valid object from constructor", func(t *testing.T) {
 		mockWriter := &service.FileWriter{}
-		uc := NewGenerateSolutionFile(testQuestion, mockWriter, testFileName, testPath, testBoilerplate, testLang)
+		uc := NewGenerateSolutionFile(testQuestion, mockWriter, testFileName, testPath, testBoilerplate, testLang, testTemplate)
 		assert.Equal(t, testQuestion, uc.question)
 		assert.Equal(t, testPath, uc.path)
 		assert.Equal(t, testBoilerplate, uc.boilerplate)
@@ -42,7 +44,7 @@ func TestGenerateSolutionFileUseCase(group *testing.T) {
 		tb := "// sample comment \\n"
 		expectedData := "// sample comment \n<sample\r\n code\n>"
 		mw.On("WriteDataToFile", testFileName+".cpp", testPath, expectedData).Return(nil)
-		uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, tb, testLang)
+		uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, tb, testLang, testTemplate)
 		err := uc.Execute()
 		assert.Nil(t, err)
 	})
@@ -59,7 +61,7 @@ func TestGenerateSolutionFileUseCase(group *testing.T) {
 			},
 		}
 		mw.On("WriteDataToFile", testFileName+".cpp", testPath, "").Return(nil)
-		uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, "", testLang)
+		uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, "", testLang, testTemplate)
 		err := uc.Execute()
 		assert.Nil(t, err)
 	})
@@ -72,7 +74,7 @@ func TestGenerateSolutionFileUseCase(group *testing.T) {
 				Content:      "<question description>",
 				CodeSnippets: []entity.CodeSnippet{},
 			}
-			uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, testBoilerplate, testLang)
+			uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, testBoilerplate, testLang, testTemplate)
 			err := uc.Execute()
 			assert.ErrorIs(t, err, errors.NoCodeSnippetsFound)
 		})
@@ -90,7 +92,7 @@ func TestGenerateSolutionFileUseCase(group *testing.T) {
 					},
 				},
 			}
-			uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, testBoilerplate, q.CodeSnippets[0].Lang)
+			uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, testBoilerplate, q.CodeSnippets[0].Lang, testTemplate)
 			err := uc.Execute()
 			assert.ErrorIs(t, err, errors.ExtensionNotFound)
 		})
@@ -108,7 +110,7 @@ func TestGenerateSolutionFileUseCase(group *testing.T) {
 					},
 				},
 			}
-			uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, testBoilerplate, testLang)
+			uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, testBoilerplate, testLang, testTemplate)
 			err := uc.Execute()
 			assert.ErrorIs(t, err, errors.SnippetNotFoundInGivenLang)
 		})

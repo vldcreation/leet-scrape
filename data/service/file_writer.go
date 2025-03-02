@@ -14,6 +14,10 @@ func NewFileWriter() *FileWriter {
 }
 
 func (fw *FileWriter) WriteDataToFile(fName string, path string, data string) error {
+	if err := os.MkdirAll(path, os.ModePerm); err != nil {
+		return err
+	}
+
 	f, err := os.OpenFile(filepath.Join(path, fName), os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		return err

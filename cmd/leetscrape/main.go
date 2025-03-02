@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/urfave/cli/v2"
 	"log"
 	"os"
+
+	"github.com/urfave/cli/v2"
 )
 
 const (
@@ -19,6 +20,8 @@ const (
 
 	BOILERPLATE = "boilerplate"
 	LANGUAGE    = "lang"
+
+	TEMPLATE = "template"
 )
 
 const CliName = "leetscrape"

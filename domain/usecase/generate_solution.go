@@ -3,6 +3,7 @@ package usecase
 import (
 	"fmt"
 	"path/filepath"
+	"runtime"
 	"slices"
 	"strings"
 
@@ -16,8 +17,14 @@ import (
 )
 
 var (
-	PATH_FILES = "../../domain/usecase/templates/%s.tmpl"
+	PATH_FILES = ""
 )
+
+func init() {
+	_, b, _, _ := runtime.Caller(0)
+	basepath := filepath.Dir(b)
+	PATH_FILES = util.GetPath(basepath, "templates")
+}
 
 type GenerateSolutionFile struct {
 	writer      service.FileWriter
@@ -57,7 +64,7 @@ func (uc *GenerateSolutionFile) Execute() error {
 			if uc.template != "" {
 				templateFiles := uc.template
 				if slices.Contains(consts.TEMPLATES, uc.template) {
-					templateFiles = fmt.Sprintf(PATH_FILES, uc.template)
+					templateFiles = filepath.Join(PATH_FILES, fmt.Sprintf("%s.tmpl", uc.template))
 				}
 
 				tmpl, err := template_engine.ParseFiles(templateFiles)

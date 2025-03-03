@@ -1,17 +1,32 @@
-name: CLI
-
-on: [ push, pull_request ]
+name: Release
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  build:
+  release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.17
-
-    - name: Build
-      run: go build -v ./cmd/leetscrape
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.18
+      - name: Build
+      run: |
+        GOOS=linux GOARCH=amd64 go build -o leetscrape-linux-amd64 ./cmd/leetscrape
+        GOOS=windows GOARCH=amd64 go build -o leetscrape-windows-amd64.exe ./cmd/leetscrape
+        GOOS=darwin GOARCH=amd64 go build -o leetscrape-darwin-amd64 ./cmd/leetscrape
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 'lts/*'
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release

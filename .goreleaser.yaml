@@ -1,9 +1,11 @@
+version: 2
+
 before:
   hooks:
     - go mod tidy
+
 builds:
-  - main: ./cmd/leetscrape
-    env:
+  - env:
       - CGO_ENABLED=0
     goos:
       - linux
@@ -12,16 +14,17 @@ builds:
     goarch:
       - amd64
       - arm64
+    main: ./cmd/leetscrape
     ldflags:
       - -s -w
-      - -X main.Version=v{{.Version}}
+      - -X main.Version={{.Version}}
       - -X main.Commit={{.Commit}}
       - -X main.Date={{.Date}}
 
 archives:
   - format: tar.gz
     name_template: >-
-      {{ .ProjectName }}_
+      {{ .ProjectName }}_{{ .Version }}_
       {{- title .Os }}_
       {{- if eq .Arch "amd64" }}x86_64
       {{- else }}{{ .Arch }}{{ end }}
@@ -29,26 +32,11 @@ archives:
       - goos: windows
         format: zip
 
-checksum:
-  name_template: 'checksums.txt'
-
 changelog:
   sort: asc
-  use: github
   filters:
     exclude:
       - '^docs:'
       - '^test:'
-      - '^ci:'
-  groups:
-    - title: 'Breaking Changes'
-      regexp: "^.*BREAKING CHANGE:.*$"
-      order: 0
-    - title: 'New Features'
-      regexp: "^.*feat[(\\w)]*:.*$"
-      order: 1
-    - title: 'Bug Fixes'
-      regexp: "^.*fix[(\\w)]*:.*$"
-      order: 2
-    - title: Others
-      order: 999
+      - Merge pull request
+      - Merge branch

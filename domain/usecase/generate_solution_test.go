@@ -1,6 +1,7 @@
 package usecase
 
 import (
+	"path/filepath"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -17,10 +18,11 @@ func TestGenerateSolutionFileUseCase(group *testing.T) {
 	testBoilerplate := "// this is a test comment\n\n"
 	testLang := "C++"
 	testTemplate := "easy"
+	_ = testTemplate
 
 	group.Run("should return valid object from constructor", func(t *testing.T) {
 		mockWriter := &service.FileWriter{}
-		uc := NewGenerateSolutionFile(testQuestion, mockWriter, testFileName, testPath, testBoilerplate, testLang, testTemplate)
+		uc := NewGenerateSolutionFile(testQuestion, mockWriter, testFileName, testPath, testBoilerplate, testLang, "")
 		assert.Equal(t, testQuestion, uc.question)
 		assert.Equal(t, testPath, uc.path)
 		assert.Equal(t, testBoilerplate, uc.boilerplate)
@@ -42,9 +44,9 @@ func TestGenerateSolutionFileUseCase(group *testing.T) {
 			},
 		}
 		tb := "// sample comment \\n"
-		expectedData := "package easy\n\n// sample comment \n<sample\r\n code\n>"
+		expectedData := "// sample comment \n<sample\r\n code\n>"
 		mw.On("WriteDataToFile", testFileName+".cpp", testPath, expectedData).Return(nil)
-		uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, tb, testLang, testTemplate)
+		uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, tb, testLang, "")
 		err := uc.Execute()
 		assert.Nil(t, err)
 	})
@@ -74,7 +76,7 @@ func TestGenerateSolutionFileUseCase(group *testing.T) {
 				Content:      "<question description>",
 				CodeSnippets: []entity.CodeSnippet{},
 			}
-			uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, testBoilerplate, testLang, testTemplate)
+			uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, testBoilerplate, testLang, "")
 			err := uc.Execute()
 			assert.ErrorIs(t, err, errors.NoCodeSnippetsFound)
 		})
@@ -92,7 +94,7 @@ func TestGenerateSolutionFileUseCase(group *testing.T) {
 					},
 				},
 			}
-			uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, testBoilerplate, q.CodeSnippets[0].Lang, testTemplate)
+			uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, testBoilerplate, q.CodeSnippets[0].Lang, "")
 			err := uc.Execute()
 			assert.ErrorIs(t, err, errors.ExtensionNotFound)
 		})
@@ -110,9 +112,30 @@ func TestGenerateSolutionFileUseCase(group *testing.T) {
 					},
 				},
 			}
-			uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, testBoilerplate, testLang, testTemplate)
+			uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, testBoilerplate, testLang, "")
 			err := uc.Execute()
 			assert.ErrorIs(t, err, errors.SnippetNotFoundInGivenLang)
 		})
+	})
+
+	group.Run("should prepend template code to the given code snippet (with newline chars fixed) before writing it to file", func(t *testing.T) {
+		mw := &service.FileWriter{}
+		q := &entity.Question{
+			TitleSlug: "two-sum",
+			Content:   "<sample content>",
+			CodeSnippets: []entity.CodeSnippet{
+				{
+					"C++",
+					"cpp",
+					"<sample\\r\\n code\\n>",
+				},
+			},
+		}
+		tb := "// sample comment \\n"
+		expectedData := "package easy\n\n// sample comment \n<sample\r\n code\n>"
+		mw.On("WriteDataToFile", testFileName+".cpp", filepath.Join(testPath, testTemplate), expectedData).Return(nil)
+		uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, tb, testLang, testTemplate)
+		err := uc.Execute()
+		assert.Nil(t, err)
 	})
 }

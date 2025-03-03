@@ -91,6 +91,10 @@ This tool provides four ways to find a problem -
   *Command:* `solution`
   *Example:* `leetscrape -n "two sum" sol -l C++ -b "#include<string>\nusing namespace std;\n"`
   This will prepend the given string to the code snippet before writing to file.
+- `--template` or `-t`
+  *Command:* `solution`
+  *Example:* `leetscrape -n "two sum" sol -l go -t "easy" or "path_to_your_.tmpl"`
+  This will use the given string as a template to generate the file name. The template should follow tmpl formatting and contain {{.CodeSnippet}}
 
 ## 💭 QnA
 

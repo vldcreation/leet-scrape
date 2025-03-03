@@ -49,7 +49,7 @@ More details in the [Usage](#-usage) section.
 ## ⚙ Installation
 
 - ### Using Go
-  1. Make sure you have [Go](https://golang.org/doc/install) (`1.16` or greater) installed with your `$GOROOT`
+  1. Make sure you have [Go](https://golang.org/doc/install) (`1.21` or greater) installed with your `$GOROOT`
      environment variable correctly setup. (If you installed Go in the default location, then you don't need to worry
      about setting up `$GOROOT`)
 

@@ -22,7 +22,7 @@ const (
 	FileTemplateDoesntExist
 )
 
-const repoUrl = "https://github.com/ISKalsi/leet-scrape"
+const repoUrl = "https://github.com/vldcreation/leet-scrape"
 
 type Error int
 

@@ -2,6 +2,7 @@ package usecase
 
 import (
 	"fmt"
+	"path/filepath"
 	"slices"
 	"strings"
 
@@ -68,6 +69,8 @@ func (uc *GenerateSolutionFile) Execute() error {
 				if err != nil {
 					return errors.FileTemplateInvalid
 				}
+
+				uc.path = filepath.Join(uc.path, uc.template)
 				solution.CodeSnippet = builder.String()
 			}
 

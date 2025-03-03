@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"runtime/debug"
 
 	"github.com/urfave/cli/v2"
 )
@@ -23,6 +24,7 @@ const (
 	LANGUAGE    = "lang"
 
 	TEMPLATE = "template"
+	VERSION  = "version"
 )
 
 const CliName = "leetscrape"
@@ -31,10 +33,22 @@ var Version = "development"
 var Commit = "none"
 var Date = "unknown"
 
+func printVersion() {
+	buildInfo, ok := debug.ReadBuildInfo()
+	if !ok {
+		fmt.Println("Unable to determine version information.")
+		return
+	}
+
+	if buildInfo.Main.Version != "" {
+		Version = buildInfo.Main.Version
+	}
+	fmt.Printf("%s version %s\ncommit %s \nbuilt at %s\n", CliName, Version, Commit, Date)
+}
+
 func main() {
 	app := &cli.App{
 		Name:      "Leetcode Scrapper",
-		Version:   fmt.Sprintf("%s \nCommit: %sBuild Date: %s \n", Version, Commit, Date),
 		Usage:     "Download and create the default empty solution file (with the question statement as docstring at the top) from leetcode.com",
 		UsageText: "leetscrape [global options] command [command options]\n    Examples -\n\t1. " + CliName + " --name \"Two Sum\" solution --lang C++\n\t2. " + CliName + " -N 455 question",
 		Flags: []cli.Flag{
@@ -63,6 +77,16 @@ func main() {
 				Name:    LOCATION,
 				Aliases: []string{"o"},
 				Usage:   "Directory `<path>` for the output file",
+			},
+			&cli.BoolFlag{
+				Name:    VERSION,
+				Aliases: []string{"v"},
+				Usage:   "Print version",
+				Action: func(ctx *cli.Context, b bool) error {
+					printVersion()
+					os.Exit(0)
+					return nil
+				},
 			},
 		},
 		Commands: []*cli.Command{question, solution},

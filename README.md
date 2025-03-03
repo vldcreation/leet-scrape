@@ -2,19 +2,20 @@
 
 [1-img]: https://img.shields.io/github/workflow/status/ISKalsi/leet-scrape/CLI?label=CLI%20build
 
-[1]: https://github.com/ISKalsi/leet-scrape/actions/workflows/cli.yml
+[1]: https://github.com/vldcreation/leet-scrape/actions/workflows/cli.yml
 
-[2-img]: https://img.shields.io/github/workflow/status/ISKalsi/leet-scrape/Test?label=tests
+[2-img]: https://img.shields.io/github/workflow/status/vldcreation/leet-scrape/Test?label=tests
 
-[2]: https://github.com/ISKalsi/leet-scrape/actions/workflows/test.yml
+[2]: https://github.com/vldcreation/leet-scrape/actions/workflows/test.yml
 
-[3-img]: https://goreportcard.com/badge/github.com/ISKalsi/leet-scrape
+[3-img]: https://goreportcard.com/badge/github.com/vldcreation/leet-scrape
 
-[3]: https://goreportcard.com/report/github.com/ISKalsi/leet-scrape
+[3]: https://goreportcard.com/report/github.com/vldcreation/leet-scrape
 
-[4-img]: https://img.shields.io/github/go-mod/go-version/ISKalsi/leet-scrape
+[4-img]: https://img.shields.io/github/go-mod/go-version/vldcreation/leet-scrape
 
 # Leetscrape
+Original Repo: [ISKalsi/Leetscrape](https://github.com/ISKalsi/leet-scrape)
 
 [![CLI build][1-img]][1] [![Tests][2-img]][2] [![Go reportcard][3-img]][3] ![Go version][4-img]
 
@@ -127,13 +128,13 @@ This tool provides four ways to find a problem -
 - ### While using the `--name` flag, do I need to give the name exactly how it is on Leetcode?
 
   No, as long as you enter the correct spellings, it will be alright.
-  Check [this](https://github.com/ISKalsi/leet-scrape/blob/0abe3ce3f1cee2f1c90b5a7fa5d30f13a7b34f12/data/repo/problem_test.go#L23)
+  Check [this](https://github.com/vldcreation/leet-scrape/blob/0abe3ce3f1cee2f1c90b5a7fa5d30f13a7b34f12/data/repo/problem_test.go#L23)
   out for a few examples of a valid names.
 
 - ### While using the `--url` flag, do I need to give the full url?
 
   Again, no. Just make sure it is in double quotes to avoid any unexpected errors.
-  Check [this](https://github.com/ISKalsi/leet-scrape/blob/0abe3ce3f1cee2f1c90b5a7fa5d30f13a7b34f12/data/repo/problem_test.go#L107)
+  Check [this](https://github.com/vldcreation/leet-scrape/blob/0abe3ce3f1cee2f1c90b5a7fa5d30f13a7b34f12/data/repo/problem_test.go#L107)
   out for a few examples of a valid urls.
 
   

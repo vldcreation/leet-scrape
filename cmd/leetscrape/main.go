@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"os/exec"
 
 	"github.com/urfave/cli/v2"
 )
@@ -31,23 +30,6 @@ const CliName = "leetscrape"
 var Version = "development"
 var Commit = "none"
 var Date = "unknown"
-
-func init() {
-	versionCmd := exec.Command("cat", "VERSION")
-	if version, err := versionCmd.Output(); err == nil {
-		Version = string(version)
-	}
-
-	commitCmd := exec.Command("git", "rev-parse", "--short", "HEAD")
-	if commit, err := commitCmd.Output(); err == nil {
-		Commit = string(commit)
-	}
-
-	dateCmd := exec.Command("date", "show", "-s", "--format=%ci", "HEAD")
-	if date, err := dateCmd.Output(); err == nil {
-		Date = string(date)
-	}
-}
 
 func main() {
 	app := &cli.App{

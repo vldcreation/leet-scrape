@@ -37,6 +37,13 @@ jobs:
           patch_pattern: "fix:"
           version_format: "${major}.${minor}.${patch}-prerelease${increment}"
           
+      - name: Create and Push Tag
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git tag -f ${{ steps.semver.outputs.version }}
+          git push origin -f ${{ steps.semver.outputs.version }}
+          
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
         with:

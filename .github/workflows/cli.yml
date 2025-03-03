@@ -8,15 +8,44 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      
       - name: Setup Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v4
         with:
-          go-version: 1.21
+          go-version: '1.21'
+
+      - name: Get Previous Version
+        id: get_previous_version
+        run: |
+          PREV_VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "prev_version=${PREV_VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Generate Next Version
+        id: semver
+        uses: paulhatch/semantic-version@v5.4.0
+        with:
+          tag_prefix: "v"
+          major_pattern: "BREAKING CHANGE:"
+          minor_pattern: "feat:"
+          patch_pattern: "fix:"
+          version_format: "${major}.${minor}.${patch}-prerelease${increment}"
+          
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v4
+        with:
+          distribution: goreleaser
+          version: latest
+          args: release --clean --skip-validate
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NEW_VERSION: ${{ steps.semver.outputs.version }}
       - name: Build
         run: |
           GOOS=linux GOARCH=amd64 go build -o leetscrape-linux-amd64 ./cmd/leetscrape

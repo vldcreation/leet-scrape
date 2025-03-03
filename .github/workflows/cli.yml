@@ -38,7 +38,7 @@ jobs:
           version_format: "${major}.${minor}.${patch}-prerelease${increment}"
           
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v4
+        uses: goreleaser/goreleaser-action@v6
         with:
           distribution: goreleaser
           version: latest

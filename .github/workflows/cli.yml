@@ -18,10 +18,10 @@ jobs:
         with:
           go-version: 1.18
       - name: Build
-      run: |
-        GOOS=linux GOARCH=amd64 go build -o leetscrape-linux-amd64 ./cmd/leetscrape
-        GOOS=windows GOARCH=amd64 go build -o leetscrape-windows-amd64.exe ./cmd/leetscrape
-        GOOS=darwin GOARCH=amd64 go build -o leetscrape-darwin-amd64 ./cmd/leetscrape
+        run: |
+          GOOS=linux GOARCH=amd64 go build -o leetscrape-linux-amd64 ./cmd/leetscrape
+          GOOS=windows GOARCH=amd64 go build -o leetscrape-windows-amd64.exe ./cmd/leetscrape
+          GOOS=darwin GOARCH=amd64 go build -o leetscrape-darwin-amd64 ./cmd/leetscrape
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:

@@ -42,7 +42,7 @@ func TestGenerateSolutionFileUseCase(group *testing.T) {
 			},
 		}
 		tb := "// sample comment \\n"
-		expectedData := "// sample comment \n<sample\r\n code\n>"
+		expectedData := "package easy\n\n// sample comment \n<sample\r\n code\n>"
 		mw.On("WriteDataToFile", testFileName+".cpp", testPath, expectedData).Return(nil)
 		uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, tb, testLang, testTemplate)
 		err := uc.Execute()
@@ -61,7 +61,7 @@ func TestGenerateSolutionFileUseCase(group *testing.T) {
 			},
 		}
 		mw.On("WriteDataToFile", testFileName+".cpp", testPath, "").Return(nil)
-		uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, "", testLang, testTemplate)
+		uc := NewGenerateSolutionFile(q, mw, testFileName, testPath, "", testLang, "")
 		err := uc.Execute()
 		assert.Nil(t, err)
 	})

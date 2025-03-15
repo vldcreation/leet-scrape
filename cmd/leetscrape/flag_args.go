@@ -8,6 +8,7 @@ type flagArgs struct {
 	num         int
 	today       bool
 	boilerplate string
+	fielaname   string
 	path        string
 	lang        string
 	template    string
@@ -19,6 +20,7 @@ func extractFlagArgs(c *cli.Context) *flagArgs {
 	name := c.String(NAME)
 	today := c.Bool(TODAY)
 	boilerplate := c.String(BOILERPLATE)
+	filename := c.String(FILENAME)
 	path := c.String(LOCATION)
 	lang := c.String(LANGUAGE)
 	template := c.String(TEMPLATE)
@@ -32,5 +34,6 @@ func extractFlagArgs(c *cli.Context) *flagArgs {
 		path:        path,
 		lang:        lang,
 		template:    template,
+		fielaname:   filename,
 	}
 }

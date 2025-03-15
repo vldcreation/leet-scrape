@@ -25,6 +25,9 @@ const (
 
 	TEMPLATE = "template"
 	VERSION  = "version"
+
+	TESTCASE = "testcase"
+	FILENAME = "filename"
 )
 
 const CliName = "leetscrape"
@@ -42,6 +45,7 @@ func printVersion() {
 
 	if buildInfo.Main.Version != "" {
 		Version = buildInfo.Main.Version
+		Commit = buildInfo.Main.Sum
 	}
 	fmt.Printf("%s version %s\ncommit %s \nbuilt at %s\n", CliName, Version, Commit, Date)
 }
@@ -89,7 +93,7 @@ func main() {
 				},
 			},
 		},
-		Commands: []*cli.Command{question, solution},
+		Commands: []*cli.Command{question, solution, testcase},
 	}
 
 	err := app.Run(os.Args)

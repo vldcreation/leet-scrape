@@ -1,6 +1,9 @@
 package main
 
 import (
+	"strings"
+
+	"github.com/PuerkitoBio/goquery"
 	"github.com/gocolly/colly/v2"
 	"github.com/machinebox/graphql"
 	"github.com/urfave/cli/v2"
@@ -62,4 +65,28 @@ func getFileName(q *entity.Question, args *flagArgs) (string, error) {
 	} else {
 		return "", errors.FlagMissing
 	}
+}
+
+func getTestCase(args *flagArgs) (*entity.Question, []entity.TestCase, error) {
+	ques, err := getQuestion(args)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	doc, err := goquery.NewDocumentFromReader(strings.NewReader(ques.Content))
+	if err != nil {
+		return nil, nil, err
+	}
+
+	var testCases []entity.TestCase
+	doc.Find("pre").Each(func(i int, s *goquery.Selection) {
+		testCase := entity.TestCase{
+			Input:       s.Text(),
+			Output:      s.Next().Text(),
+			Explanation: s.Next().Next().Text(),
+		}
+		testCases = append(testCases, testCase)
+	})
+
+	return ques, testCases, nil
 }
